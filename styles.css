@@ -151,6 +151,6 @@ h1 { margin: 3px 0 9px; font-size: clamp(20px, 2vw, 25px); line-height: 1.2; col
   .legal { align-items:flex-start; flex-direction:column; }.footer-columns { grid-template-columns:1fr; gap:12px; padding:20px 0; }.footer-columns h2 { margin-bottom:6px; }.footer-columns p,.footer-columns a { margin:5px 0; }.footer-bottom { gap:10px; flex-direction:column; }.back-top { left:10px; bottom:12px; }.floating-chat { right:12px; bottom:14px; }
 }
 @media (max-width: 420px) {
-  .login-button { display:none; }.product-grid { grid-template-columns:1fr; }.product-image { height:175px; }.toolbar { align-items:flex-start; }.sort-label { display:none; }
+  .product-grid { grid-template-columns:1fr; }.product-image { height:175px; }.toolbar { align-items:flex-start; }.sort-label { display:none; }
   .rating-filter small { display:none; }.header-actions .cart-button { font-size:8px; }
 }

@@ -15,6 +15,7 @@ let maxPrice = Infinity;
 let sortMode = "popular";
 let ascendingPrice = false;
 const favorites = new Set();
+const ratingCategories = { five: 5, four: 4, three: 3 };
 let toastTimer;
 
 function formatPrice(price) {
@@ -26,6 +27,23 @@ function showToast(message) {
   toast.classList.add("show");
   clearTimeout(toastTimer);
   toastTimer = setTimeout(() => toast.classList.remove("show"), 2300);
+}
+
+function countProductsForCategory(category) {
+  if (category === "all") return products.length;
+  if (ratingCategories[category]) return products.filter((product) => product.rating === ratingCategories[category]).length;
+  return products.filter((product) => product.category === category).length;
+}
+
+function renderFilterCounts() {
+  document.querySelectorAll(".category[data-category]").forEach((button) => {
+    button.querySelector("b").textContent = String(countProductsForCategory(button.dataset.category));
+  });
+  document.querySelectorAll(".rating-filter[data-rating]").forEach((button) => {
+    const count = products.filter((product) => product.rating === Number(button.dataset.rating)).length;
+    const countLabel = button.querySelector("small");
+    if (countLabel) countLabel.textContent = `(${count})`;
+  });
 }
 
 function productUnit(product) {
@@ -87,7 +105,8 @@ window.ocopOpenCart = openCart;
 function visibleProducts() {
   return products
     .filter((product) => {
-      const matchesCategory = activeCategory === "all" || activeCategory === "five" ? activeCategory === "all" || product.rating === 5 : activeCategory === "four" ? product.rating === 4 : activeCategory === "three" ? product.rating === 3 : product.category === activeCategory;
+      const matchesCategory = activeCategory === "all"
+        || (ratingCategories[activeCategory] ? product.rating === ratingCategories[activeCategory] : product.category === activeCategory);
       const matchesRating = activeRating === "all" || product.rating === Number(activeRating);
       const matchesSearch = `${product.name} Đồng Nai`.toLocaleLowerCase("vi").includes(searchTerm.toLocaleLowerCase("vi"));
       return matchesCategory && matchesRating && matchesSearch && product.price <= maxPrice;
@@ -229,5 +248,6 @@ window.addEventListener("ocop:languagechange", () => {
   renderCart();
 });
 
+renderFilterCounts();
 renderProducts();
 renderCart();

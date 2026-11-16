@@ -11,6 +11,7 @@
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="locale.css">
   <link rel="stylesheet" href="chatbot.css">
+  <link rel="stylesheet" href="auth.css">
 </head>
 <body>
   <div class="top-accent"></div>
@@ -36,7 +37,7 @@
           <button type="button" role="menuitemradio" aria-checked="false" data-locale="ja"><b>JA</b><span>日本語</span></button>
         </div>
       </div>
-      <button class="login-button" type="button" data-i18n="shop.login">♟ Đăng Nhập</button>
+      <button class="login-button" id="loginButton" type="button" aria-label="Đăng nhập hoặc đăng ký" data-i18n="shop.login" data-i18n-aria="auth.open">♟ Đăng Nhập</button>
     </div>
   </header>
 
@@ -67,15 +68,15 @@
       <div class="catalog-layout">
         <aside class="filters" aria-label="Bộ lọc sản phẩm" data-i18n-aria="shop.filters">
           <div class="filter-categories" id="categoryFilters">
-            <button class="category active" data-category="all"><span>🪶</span><span data-i18n="shop.categoryAll">Tất cả danh mục</span><b>4</b></button>
-            <button class="category" data-category="herbal"><span>🌿</span><span data-i18n="shop.categoryHerbal">Thảo Dược &amp; Y Học Cổ Truyền</span><b>2</b></button>
+            <button class="category active" data-category="all"><span>🪶</span><span data-i18n="shop.categoryAll">Tất cả danh mục</span><b>0</b></button>
+            <button class="category" data-category="herbal"><span>🌿</span><span data-i18n="shop.categoryHerbal">Thảo Dược &amp; Y Học Cổ Truyền</span><b>0</b></button>
             <button class="category" data-category="gift"><span>🎁</span><span data-i18n="shop.categoryGift">Quà Tặng Di Sản Cao Cấp</span><b>0</b></button>
-            <button class="category" data-category="farm"><span>🍃</span><span data-i18n="shop.categoryFarm">Nông Sản Chế Biến Sâu</span><b>1</b></button>
+            <button class="category" data-category="farm"><span>🍃</span><span data-i18n="shop.categoryFarm">Nông Sản Chế Biến Sâu</span><b>0</b></button>
             <button class="category" data-category="specialty"><span>🍊</span><span data-i18n="shop.categorySpecialty">Đặc Sản Thực Phẩm Bản Địa</span><b>0</b></button>
-            <button class="category" data-category="spice"><span>🌱</span><span data-i18n="shop.categorySpice">Gia Vị &amp; Hương Liệu Thổ Nhưỡng</span><b>1</b></button>
-            <button class="category" data-category="five"><span>⭐</span><span data-i18n="shop.categoryFive">Chứng nhận OCOP 5 Sao</span><b>2</b></button>
-            <button class="category" data-category="four"><span>♙</span><span data-i18n="shop.categoryFour">Chứng nhận OCOP 4 Sao</span><b>2</b></button>
-            <button class="category" data-category="three"><span>🟡</span><span data-i18n="shop.categoryThree">Chứng nhận OCOP 3 Sao Đồng Nai</span><b>25</b></button>
+            <button class="category" data-category="spice"><span>🌱</span><span data-i18n="shop.categorySpice">Gia Vị &amp; Hương Liệu Thổ Nhưỡng</span><b>0</b></button>
+            <button class="category" data-category="five"><span>⭐</span><span data-i18n="shop.categoryFive">Chứng nhận OCOP 5 Sao</span><b>0</b></button>
+            <button class="category" data-category="four"><span>♙</span><span data-i18n="shop.categoryFour">Chứng nhận OCOP 4 Sao</span><b>0</b></button>
+            <button class="category" data-category="three"><span>🟡</span><span data-i18n="shop.categoryThree">Chứng nhận OCOP 3 Sao Đồng Nai</span><b>0</b></button>
           </div>
           <label class="search-box"><span>⌕</span><input id="searchInput" type="search" placeholder="Tên đặc sản hoặc tỉnh" data-i18n-placeholder="shop.searchPlaceholder"><button type="button" aria-label="Tìm kiếm" data-i18n-aria="shop.search">🎙</button></label>
           <div class="suggestions"><b data-i18n="shop.suggestions">GỢI Ý:</b><button data-search="Chè">Chè Shan tuyết</button><button data-search="Hạt điều">Hạt điều</button><button data-search="Cà phê">Cà phê</button><button data-search="Mật ong">Mật ong</button></div>
@@ -94,8 +95,8 @@
             <button class="sort active" data-sort="popular" data-i18n="shop.popular">Phổ biến</button><button class="sort" data-sort="bestseller" data-i18n="shop.bestSelling">Bán chạy</button>
             <span class="divider"></span><span class="sort-label" data-i18n="shop.rating">Phân hạng:</span>
             <button class="rating-filter active" data-rating="all" data-i18n="shop.all">Tất cả</button>
-            <button class="rating-filter" data-rating="5">★★★★★ <span data-i18n="shop.fiveStars">5 Sao</span> <small>(2)</small></button>
-            <button class="rating-filter" data-rating="4">★★★★☆ <span data-i18n="shop.fourStars">4 Sao</span> <small>(2)</small></button>
+            <button class="rating-filter" data-rating="5">★★★★★ <span data-i18n="shop.fiveStars">5 Sao</span> <small>(0)</small></button>
+            <button class="rating-filter" data-rating="4">★★★★☆ <span data-i18n="shop.fourStars">4 Sao</span> <small>(0)</small></button>
             <button class="rating-filter" data-rating="3">★★★☆☆ <span data-i18n="shop.threeStars">3 Sao</span> <small>(0)</small></button>
             <button class="sort price-sort" id="priceSort" data-i18n="shop.price">Giá ↕</button>
             <button class="reset-button" id="resetFilters" data-i18n="shop.reset">⟳ Thiết lập lại</button>
@@ -188,6 +189,97 @@
       </footer>
     </section>
   </div>
+  <div class="auth-backdrop" id="authBackdrop" hidden>
+    <section class="auth-dialog" role="dialog" aria-modal="true" aria-labelledby="authTitle">
+      <header class="auth-header">
+        <span class="auth-avatar" aria-hidden="true">♟</span>
+        <div class="auth-heading">
+          <span class="auth-kicker" data-i18n="auth.badge">▣ CỔNG KHÁCH HÀNG OCOP</span>
+          <h2 id="authTitle" data-i18n="auth.title">👤 QUẢN LÝ TÀI KHOẢN KHÁCH HÀNG</h2>
+        </div>
+        <button class="auth-close" id="authClose" type="button" aria-label="Đóng" data-i18n-aria="auth.close">×</button>
+      </header>
+      <div class="auth-tabs" id="authTabs" role="tablist" aria-label="Tài khoản" data-i18n-aria="auth.tabs">
+        <button class="active" id="authTabLogin" type="button" role="tab" aria-selected="true" aria-controls="authLoginPanel" data-auth-tab="login" data-i18n="auth.tabLogin">🔑 Đăng Nhập</button>
+        <button id="authTabRegister" type="button" role="tab" aria-selected="false" aria-controls="authRegisterPanel" data-auth-tab="register" data-i18n="auth.tabRegister">📝 Đăng Ký</button>
+      </div>
+      <div class="auth-content">
+        <section class="auth-panel" id="authLoginPanel" role="tabpanel" aria-labelledby="authTabLogin" data-auth-panel="login">
+          <form id="authLoginForm" novalidate>
+            <label for="authLoginAccount" data-i18n="auth.account">Tài khoản (Tên đăng nhập hoặc Số điện thoại) <span>*</span></label>
+            <input id="authLoginAccount" name="account" type="text" autocomplete="username" required placeholder="Ví dụ: khachhang hoặc 0912345678" data-i18n-placeholder="auth.accountPlaceholder">
+            <label for="authLoginPassword" data-i18n="auth.password">Mật khẩu <span>*</span></label>
+            <div class="auth-password-field">
+              <input id="authLoginPassword" name="password" type="password" autocomplete="current-password" required placeholder="Nhập mật khẩu..." data-i18n-placeholder="auth.passwordPlaceholder">
+              <button type="button" data-auth-toggle="authLoginPassword" aria-label="Hiện mật khẩu" data-i18n-aria="auth.showPassword">◉</button>
+            </div>
+            <div class="auth-forgot-row"><button type="button" id="authForgotLink" data-i18n="auth.forgot">Quên mật khẩu?</button></div>
+            <p class="auth-status" id="authLoginStatus" role="status" aria-live="polite"></p>
+            <button class="auth-submit auth-submit-login" type="submit" data-i18n="auth.loginSubmit">↪ ĐĂNG NHẬP NGAY</button>
+          </form>
+          <p class="auth-switch"><span data-i18n="auth.noAccount">Chưa có tài khoản?</span> <button type="button" data-auth-tab-link="register" data-i18n="auth.registerLink">Bấm vào đây để Đăng Ký miễn phí</button></p>
+        </section>
+        <section class="auth-panel" id="authRegisterPanel" role="tabpanel" aria-labelledby="authTabRegister" data-auth-panel="register" hidden>
+          <form id="authRegisterForm" class="auth-register-form" novalidate>
+            <div class="auth-field">
+              <label for="authName" data-i18n="auth.name">Họ và tên <span>*</span></label>
+              <input id="authName" name="name" type="text" autocomplete="name" minlength="2" maxlength="100" required placeholder="Ví dụ: Nguyễn Văn An" data-i18n-placeholder="auth.namePlaceholder">
+            </div>
+            <div class="auth-field">
+              <label for="authUsername" data-i18n="auth.username">Tên tài khoản (Username) <span>*</span></label>
+              <input id="authUsername" name="username" type="text" autocomplete="username" minlength="3" maxlength="24" pattern="[A-Za-z0-9._\-]+" required placeholder="Ví dụ: nguyenvana" data-i18n-placeholder="auth.usernamePlaceholder">
+            </div>
+            <div class="auth-field auth-field-wide">
+              <label for="authPhone" data-i18n="auth.phone">Số điện thoại <span>*</span></label>
+              <input id="authPhone" name="phone" type="tel" autocomplete="tel" inputmode="tel" required placeholder="Ví dụ: 0912345678" data-i18n-placeholder="auth.phonePlaceholder">
+            </div>
+            <div class="auth-field">
+              <label for="authRegisterPassword" data-i18n="auth.password">Mật khẩu <span>*</span></label>
+              <div class="auth-password-field">
+                <input id="authRegisterPassword" name="password" type="password" autocomplete="new-password" minlength="8" required placeholder="Tối thiểu 8 ký tự..." data-i18n-placeholder="auth.passwordMin">
+                <button type="button" data-auth-toggle="authRegisterPassword" aria-label="Hiện mật khẩu" data-i18n-aria="auth.showPassword">◉</button>
+              </div>
+            </div>
+            <div class="auth-field">
+              <label for="authConfirmPassword" data-i18n="auth.confirmPassword">Nhập lại mật khẩu <span>*</span></label>
+              <div class="auth-password-field">
+                <input id="authConfirmPassword" name="confirmPassword" type="password" autocomplete="new-password" minlength="8" required placeholder="Nhập lại mật khẩu..." data-i18n-placeholder="auth.confirmPlaceholder">
+                <button type="button" data-auth-toggle="authConfirmPassword" aria-label="Hiện mật khẩu" data-i18n-aria="auth.showPassword">◉</button>
+              </div>
+            </div>
+            <p class="auth-status auth-field-wide" id="authRegisterStatus" role="status" aria-live="polite"></p>
+            <button class="auth-submit auth-submit-register auth-field-wide" type="submit" data-i18n="auth.createSubmit">♟ TẠO TÀI KHOẢN</button>
+          </form>
+          <p class="auth-switch"><span data-i18n="auth.haveAccount">Đã có tài khoản?</span> <button type="button" data-auth-tab-link="login" data-i18n="auth.backLogin">Quay lại Đăng Nhập</button></p>
+        </section>
+        <section class="auth-panel auth-recovery-panel" id="authRecoveryPanel" data-auth-panel="forgot" hidden>
+          <h3 data-i18n="auth.recoveryTitle">Quên mật khẩu</h3>
+          <p data-i18n="auth.recoveryIntro">Nhập số điện thoại đã đăng ký để nhận mã xác nhận qua SMS.</p>
+          <form id="authRecoveryForm" novalidate>
+            <label for="authRecoveryPhone" data-i18n="auth.phone">Số điện thoại <span>*</span></label>
+            <input id="authRecoveryPhone" name="phone" type="tel" autocomplete="tel" inputmode="tel" required placeholder="0912345678" data-i18n-placeholder="auth.phonePlaceholder">
+            <button class="auth-code-button" id="authSendCode" type="button" data-i18n="auth.sendCode">Gửi mã xác nhận</button>
+            <label for="authCode" data-i18n="auth.code">Mã xác nhận 6 chữ số <span>*</span></label>
+            <input id="authCode" name="code" type="text" inputmode="numeric" autocomplete="one-time-code" pattern="[0-9]{6}" maxlength="6" required placeholder="Nhập mã 6 chữ số..." data-i18n-placeholder="auth.codePlaceholder">
+            <label for="authNewPassword" data-i18n="auth.newPassword">Mật khẩu mới <span>*</span></label>
+            <div class="auth-password-field">
+              <input id="authNewPassword" name="newPassword" type="password" autocomplete="new-password" minlength="8" required placeholder="Tối thiểu 8 ký tự..." data-i18n-placeholder="auth.passwordMin">
+              <button type="button" data-auth-toggle="authNewPassword" aria-label="Hiện mật khẩu" data-i18n-aria="auth.showPassword">◉</button>
+            </div>
+            <label for="authNewPasswordConfirm" data-i18n="auth.confirmNewPassword">Nhập lại mật khẩu mới <span>*</span></label>
+            <div class="auth-password-field">
+              <input id="authNewPasswordConfirm" name="confirmPassword" type="password" autocomplete="new-password" minlength="8" required placeholder="Nhập lại mật khẩu mới..." data-i18n-placeholder="auth.confirmNewPlaceholder">
+              <button type="button" data-auth-toggle="authNewPasswordConfirm" aria-label="Hiện mật khẩu" data-i18n-aria="auth.showPassword">◉</button>
+            </div>
+            <p class="auth-status" id="authRecoveryStatus" role="status" aria-live="polite"></p>
+            <button class="auth-submit auth-submit-login" type="submit" data-i18n="auth.resetSubmit">Đặt lại mật khẩu</button>
+          </form>
+          <button class="auth-recovery-back" type="button" data-auth-tab-link="login" data-i18n="auth.backLogin">Quay lại đăng nhập</button>
+        </section>
+        <p class="auth-note" data-i18n="auth.backendNote">Giao diện mẫu chưa kết nối hệ thống xác thực/SMS; thông tin mật khẩu không được lưu.</p>
+      </div>
+    </section>
+  </div>
   <button class="floating-chat" id="floatingChat" type="button" aria-label="Mở chatbot" data-i18n-aria="shop.openChat">🤖<b>AI</b></button>
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
   <script src="locale.js"></script>
@@ -195,5 +287,6 @@
   <script src="cart.js"></script>
   <script src="chatbot.js"></script>
   <script src="app.js"></script>
+  <script src="auth.js"></script>
 </body>
 </html>
