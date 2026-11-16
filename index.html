@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#e1f3fc">
+  <title>OCOP Đồng Nai — Đặc sản và điểm bán</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="home.css">
+  <link rel="stylesheet" href="locale.css">
+</head>
+<body class="landing-page">
+  <header class="landing-header">
+    <a class="landing-brand" href="index.html" aria-label="OCOP Sales — Trang chủ" data-i18n-aria="home.brandHome">
+      <span class="landing-brand-mark">◢</span>
+      <span>OCOP SALES</span>
+    </a>
+    <nav class="landing-actions" aria-label="Điều hướng chính" data-i18n-aria="home.mainNav">
+      <a class="enter-button" href="shop.html"><span data-i18n="home.enter">Vào trang</span><span>↗</span></a>
+      <div class="locale-picker">
+        <button class="locale-trigger" type="button" aria-label="Chọn ngôn ngữ" data-i18n-aria="locale.menu" aria-haspopup="menu" aria-expanded="false">
+          <span>🌐</span><span class="locale-code">VI</span><span>⌄</span>
+        </button>
+        <div class="locale-menu" role="menu" aria-label="Chọn ngôn ngữ" data-i18n-aria="locale.menu">
+          <button type="button" role="menuitemradio" aria-checked="false" data-locale="vi"><b>VI</b><span>Tiếng Việt</span></button>
+          <button type="button" role="menuitemradio" aria-checked="false" data-locale="en"><b>EN</b><span>English</span></button>
+          <button type="button" role="menuitemradio" aria-checked="false" data-locale="zh"><b>ZH</b><span>中文</span></button>
+          <button type="button" role="menuitemradio" aria-checked="false" data-locale="ko"><b>KO</b><span>한국어</span></button>
+          <button type="button" role="menuitemradio" aria-checked="false" data-locale="ja"><b>JA</b><span>日本語</span></button>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <main class="landing-main">
+    <section class="landing-intro" aria-labelledby="landing-title">
+      <div class="landing-pill">♙ <span>🌟</span> <span data-i18n="home.badge">DANH MỤC ĐẶC SẢN VÀ ĐIỂM BÁN ĐỒNG NAI</span> <span>✨</span></div>
+      <div class="landing-message">
+        <h1 id="landing-title" data-i18n="home.heading">Đặc sản OCOP Đồng Nai</h1>
+        <h2 data-i18n="home.subtitle">Sản phẩm địa phương, thông tin rõ ràng, dễ tìm điểm bán</h2>
+        <p data-i18n="home.description">Tra cứu sản phẩm Đồng Nai trong danh mục cửa hàng và điểm bán trong danh bạ nội bộ. Chatbot không tra cứu dữ liệu sản phẩm trên web.</p>
+      </div>
+      <div class="landing-shortcuts">
+        <a href="#store-network"><span>▣</span><span data-i18n="home.stores">Điểm bán Đồng Nai</span></a>
+        <a href="shop.html#products"><span>🌱</span><span data-i18n="home.specialty">Đặc sản Đồng Nai</span></a>
+        <button type="button" id="assistantButton"><span>♧</span><span data-i18n="home.assistant">Chatbot theo dữ liệu nội bộ</span></button>
+      </div>
+    </section>
+
+    <section class="store-panel" id="store-network" aria-label="Điểm bán OCOP Đồng Nai" data-i18n-aria="home.storeRegion">
+      <div class="panel-heading">
+        <h2 data-i18n="home.panelTitle">🗺️ ĐIỂM BÁN OCOP ĐỒNG NAI</h2>
+        <p data-i18n="home.mapNote">Ranh giới tham khảo; chỉ ghim điểm OCOP đã duyệt có tọa độ xác minh.</p>
+      </div>
+      <div class="location-tabs" role="tablist" aria-label="Chọn khu vực" data-i18n-aria="home.locationTabs">
+        <button class="location-tab active" type="button" role="tab" aria-selected="true" data-i18n="home.allLocations" data-location="Toàn tỉnh Đồng Nai" data-address="Tỉnh Đồng Nai, Việt Nam" data-title="Toàn tỉnh Đồng Nai" data-phone="1900 888 688" data-product="Bưởi Tân Triều, Ca cao Trọng Đức, Hạt điều Vinahe, Trà sen Nhơn Trạch" data-map-query="Đồng Nai, Việt Nam" data-zoom="9">📍 Toàn tỉnh Đồng Nai</button>
+        <button class="location-tab" type="button" role="tab" aria-selected="false" data-i18n="home.tanTrieu" data-location="Bưởi Tân Triều (Vĩnh Cửu)" data-address="Xã Tân Bình, Huyện Vĩnh Cửu, Tỉnh Đồng Nai" data-title="HTX Nông nghiệp Dịch vụ Tân Triều" data-phone="092.168.612" data-product="Bưởi đường lá cam Tân Triều, Rượu bưởi Tân Triều (OCOP 4 Sao)" data-map-query="HTX Nông nghiệp Dịch vụ Tân Triều, Tân Bình, Vĩnh Cửu, Đồng Nai" data-zoom="15">🍊 Bưởi Tân Triều (Vĩnh Cửu)</button>
+        <button class="location-tab" type="button" role="tab" aria-selected="false" data-i18n="home.cacao" data-location="Ca cao Trọng Đức (Định Quán)" data-address="Định Quán, Tỉnh Đồng Nai" data-title="Cơ sở Ca cao Trọng Đức" data-phone="1900 888 688" data-product="Bột cacao nguyên chất Trọng Đức" data-map-query="Ca cao Trọng Đức, Định Quán, Đồng Nai" data-zoom="14">🍫 Ca cao Trọng Đức (Định Quán)</button>
+        <button class="location-tab" type="button" role="tab" aria-selected="false" data-i18n="home.hiepVan" data-location="Khô gà rừng Hiệp Vân" data-address="Xuân An, Long Khánh, Tỉnh Đồng Nai" data-title="Showroom Dược liệu Khô qua rừng Hiệp Vân" data-phone="093.175.625" data-product="Bột cacao nguyên chất Trọng Đức" data-map-query="Showroom Dược liệu Khô qua rừng Hiệp Vân, Long Khánh, Đồng Nai" data-zoom="15">🏪 Khô gà rừng Hiệp Vân</button>
+      </div>
+
+      <div class="map-frame">
+        <iframe id="locationMap" title="Bản đồ điểm bán OCOP Đồng Nai" src="https://maps.google.com/maps?q=%C4%90%E1%BB%93ng%20Nai%2C%20Vi%E1%BB%87t%20Nam&z=9&output=embed" loading="lazy" allowfullscreen referrerpolicy="no-referrer-when-downgrade"></iframe>
+        <a class="map-open" id="mapOpenLink" data-i18n="home.openMaps" href="https://www.google.com/maps/search/?api=1&query=Dong+Nai+Vietnam" target="_blank" rel="noopener noreferrer">Open in Maps ↗</a>
+        <button class="map-control" id="mapCenter" type="button" aria-label="Định tâm bản đồ" data-i18n-aria="home.centerMap">⌖</button>
+      </div>
+
+      <div class="map-actions">
+        <p>📍 <span data-i18n="home.mapReady">Google Maps Đồng Nai sẵn sàng · Nhấp chọn điểm bán phía trên để xem vị trí &amp; chỉ đường</span></p>
+        <a id="directionsLink" data-i18n="home.directions" href="https://www.google.com/maps/dir/?api=1&destination=Dong+Nai+Vietnam" target="_blank" rel="noopener noreferrer">◆ Chỉ đường Google Maps</a>
+      </div>
+      <article class="selected-location">
+        <div class="selected-title">
+          <div><h3 id="selectedName">Toàn tỉnh Đồng Nai</h3><span id="selectedAddress">📍 Tỉnh Đồng Nai, Việt Nam</span></div>
+          <b data-i18n="home.localSpecialty">ĐẶC SẢN OCOP ĐỒNG NAI</b>
+        </div>
+        <p class="hotline"><span data-i18n="home.hotline">☎ Hotline:</span> <strong id="selectedPhone">1900 888 688</strong> <span data-i18n="home.hours">(Giờ mở cửa: 07:30 - 21:00)</span></p>
+        <p class="featured-products"><span data-i18n="home.featured">🛍 Sản phẩm tiêu biểu:</span> <span id="selectedProduct">Bưởi Tân Triều, Ca cao Trọng Đức, Hạt điều Vinahe, Trà khô qua rừng Hiệp Vân, Trà sen Nhơn Trạch</span></p>
+      </article>
+      <div class="network-heading"><h3 data-i18n="home.network">▣ MẠNG LƯỚI ĐIỂM BÁN &amp; HỢP TÁC XÃ OCOP — ĐỒNG NAI (4)</h3><span data-i18n="home.certified">Đạt Chuẩn OCOP</span></div>
+      <div class="store-grid">
+        <button class="store-card" type="button" data-location="Bưởi Tân Triều (Vĩnh Cửu)" data-address="Xã Tân Bình, Huyện Vĩnh Cửu, Tỉnh Đồng Nai" data-title="HTX Nông nghiệp Dịch vụ Tân Triều" data-phone="092.168.612" data-product="Bưởi đường lá cam Tân Triều, Rượu bưởi Tân Triều (OCOP 4 Sao)" data-map-query="HTX Nông nghiệp Dịch vụ Tân Triều, Tân Bình, Vĩnh Cửu, Đồng Nai" data-zoom="15">
+          <strong>HTX Nông nghiệp Dịch vụ Tân Triều – Bưởi</strong><span class="stars">5★</span>
+          <small>📍 Tân Bình, Huyện Vĩnh Cửu, Tỉnh Đồng Nai</small><small class="phone">☎ 092.168.612 <i>(07:30–21:00)</i></small>
+          <span class="store-product">Hạt điều vị rang muối nguyên bản Nga Biên</span><em data-i18n="home.storeDirections">◆ Chỉ Đường</em>
+        </button>
+        <button class="store-card" type="button" data-location="Khô gà rừng Hiệp Vân" data-address="Số 21, Đường Nguyễn Trường Tộ, Xuân An, Long Khánh, Tỉnh Đồng Nai" data-title="Showroom Dược liệu Khô qua rừng Hiệp Vân" data-phone="093.175.625" data-product="Bột cacao nguyên chất Trọng Đức" data-map-query="Showroom Dược liệu Khô qua rừng Hiệp Vân, Long Khánh, Đồng Nai" data-zoom="15">
+          <strong>Showroom Dược liệu Khô qua rừng Hiệp Vân</strong><span class="stars">5★</span>
+          <small>📍 Số 21, Đường Nguyễn Trường Tộ, Xuân An, Long Khánh, Đồng Nai</small><small class="phone">☎ 093.175.625 <i>(07:30–21:00)</i></small>
+          <span class="store-product">Bột cacao nguyên chất Trọng Đức</span><em data-i18n="home.storeDirections">◆ Chỉ Đường</em>
+        </button>
+        <button class="store-card" type="button" data-location="Showroom Hạt điều Vinahe Đồng Nai" data-address="Quốc lộ 1A, Tân Hòa, Trảng Bom, Tỉnh Đồng Nai" data-title="Showroom Hạt điều Vinahe Đồng Nai" data-phone="094.182.638" data-product="Trà sen Nhơn Trạch" data-map-query="Showroom Hạt điều Vinahe, Tân Hòa, Trảng Bom, Đồng Nai" data-zoom="15">
+          <strong>Showroom Hạt điều Vinahe Đồng Nai</strong><span class="stars">4★</span>
+          <small>📍 Quốc lộ 1A, Tân Hòa, Trảng Bom, Tỉnh Đồng Nai</small><small class="phone">☎ 094.182.638 <i>(07:30–21:00)</i></small>
+          <span class="store-product">Trà sen Nhơn Trạch</span><em data-i18n="home.storeDirections">◆ Chỉ Đường</em>
+        </button>
+        <button class="store-card" type="button" data-location="Đại lý Nông sản sấy Cường Hoa Đồng Nai" data-address="Đồng Nai, Việt Nam" data-title="Đại lý Nông sản sấy Cường Hoa Đồng Nai" data-phone="095.189.651" data-product="Mật ong hoa tràm / hoa cao su Đồng Nai" data-map-query="Đại lý Nông sản sấy Cường Hoa Đồng Nai, Đồng Nai, Việt Nam" data-zoom="14">
+          <strong>Đại lý Nông sản sấy Cường Hoa Đồng Nai</strong><span class="stars">4★</span>
+          <small>📍 Đại lộ Trung tâm hành chính, TP. Đồng Nai</small><small class="phone">☎ 095.189.651 <i>(07:30–21:00)</i></small>
+          <span class="store-product">Mật ong hoa tràm / hoa cao su Đồng Nai</span><em data-i18n="home.storeDirections">◆ Chỉ Đường</em>
+        </button>
+      </div>
+    </section>
+  </main>
+
+  <footer class="landing-footer">
+    <a href="shop.html" data-i18n="home.footer">🌟　🌿 KHÁM PHÁ ĐẶC SẢN ĐỒNG NAI</a>
+  </footer>
+  <div class="landing-toast" id="landingToast" role="status" aria-live="polite"></div>
+  <script src="locale.js"></script>
+  <script src="home.js"></script>
+</body>
+</html>

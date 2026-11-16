@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#eaf7ff">
+  <title>OCOP Sales — Đặc sản Đồng Nai</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="locale.css">
+</head>
+<body>
+  <div class="top-accent"></div>
+  <header class="site-header">
+    <a class="brand" href="index.html" aria-label="OCOP Sales - Trang chủ" data-i18n-aria="home.brandHome">
+      <span class="brand-mark">◢</span><span class="brand-name">OCOP</span>
+    </a>
+    <nav class="quick-links" aria-label="Điều hướng nhanh" data-i18n-aria="shop.quickNav">
+      <a href="#products"><span>🌟</span> <span data-i18n="shop.specialty">Đặc sản Đồng Nai</span></a>
+      <a href="index.html#store-network"><span>▦</span> <span data-i18n="shop.stores">Điểm bán Đồng Nai</span></a>
+    </nav>
+    <div class="header-actions">
+      <button class="cart-button" id="cartButton" type="button"><span data-i18n="shop.cart">🛒 Giỏ hàng</span> <span class="cart-count" id="cartCount">0</span></button>
+      <div class="locale-picker">
+        <button class="locale-trigger" type="button" aria-label="Chọn ngôn ngữ" data-i18n-aria="locale.menu" aria-haspopup="menu" aria-expanded="false">
+          <span>🌐</span><span class="locale-code">VI</span><span>⌄</span>
+        </button>
+        <div class="locale-menu" role="menu" aria-label="Chọn ngôn ngữ" data-i18n-aria="locale.menu">
+          <button type="button" role="menuitemradio" aria-checked="false" data-locale="vi"><b>VI</b><span>Tiếng Việt</span></button>
+          <button type="button" role="menuitemradio" aria-checked="false" data-locale="en"><b>EN</b><span>English</span></button>
+          <button type="button" role="menuitemradio" aria-checked="false" data-locale="zh"><b>ZH</b><span>中文</span></button>
+          <button type="button" role="menuitemradio" aria-checked="false" data-locale="ko"><b>KO</b><span>한국어</span></button>
+          <button type="button" role="menuitemradio" aria-checked="false" data-locale="ja"><b>JA</b><span>日本語</span></button>
+        </div>
+      </div>
+      <button class="login-button" type="button" data-i18n="shop.login">♟ Đăng Nhập</button>
+    </div>
+  </header>
+
+  <main>
+    <section class="intro" aria-labelledby="intro-title">
+      <div class="announcement"><span>🛡</span><span data-i18n="shop.announcement">Thông tin được gợi ý tham khảo nội bộ, điểm bán hiển thị đã được xác thực</span></div>
+      <div class="intro-eyebrow" data-i18n="shop.eyebrow">🔎 CHUỖI CUNG ỨNG SỐ OCOP 4.0</div>
+      <div class="heading-row"><span></span><h1 id="intro-title"><span data-i18n="shop.heroLine1">CAM KẾT VẬN HÀNH CHUỖI CUNG ỨNG SỐ</span><br><span data-i18n="shop.heroLine2">TOÀN DIỆN</span></h1><span></span></div>
+      <p class="intro-copy"><span data-i18n="shop.heroDescription">Nền tảng chuẩn hóa dữ liệu pháp lý, tối ưu logistics và vận hành bền vững cạnh tranh cho hợp tác xã nông sản 63 tỉnh thành.</span></p>
+      <div class="benefit-cards">
+        <article class="benefit-card"><span class="benefit-icon green">🛡</span><h2 data-i18n="shop.originTitle">Nguồn gốc rõ ràng</h2><p data-i18n="shop.originText">Thông tin và sao OCOP.</p><small data-i18n="shop.originBadge">● Thông tin minh bạch</small></article>
+        <article class="benefit-card"><span class="benefit-icon gold">🏺</span><h2 data-i18n="shop.storyTitle">Câu chuyện đặc sản</h2><p data-i18n="shop.storyText">Khám phá văn hóa vùng miền.</p><small data-i18n="shop.storyBadge">▪ Di sản Việt</small></article>
+        <article class="benefit-card"><span class="benefit-icon blue">🛵</span><h2 data-i18n="shop.locationTitle">Tìm điểm bán</h2><p data-i18n="shop.locationText">Tra cứu cửa hàng trên bản đồ.</p><small data-i18n="shop.locationBadge">▦ Kết nối địa phương</small></article>
+        <article class="benefit-card"><span class="benefit-icon chart">📊</span><h2 data-i18n="shop.advisorTitle">Tư vấn 24/7</h2><p data-i18n="shop.advisorText">Hỗ trợ lựa chọn và đặt hàng.</p><small data-i18n="shop.advisorBadge">⌁ Trợ lý sản phẩm</small></article>
+      </div>
+      <div class="service-strip">
+        <div><span>♙</span><b data-i18n="shop.certified">100% Chuẩn OCOP</b><small data-i18n="shop.certifiedText">Đạt 3–5 Sao kiểm định quốc gia</small></div>
+        <div><span>🚚</span><b data-i18n="shop.shipping">Giao Hàng Toàn Quốc</b><small data-i18n="shop.shippingText">Đóng gói chuẩn nông sản sạch</small></div>
+        <div><span>▣</span><b data-i18n="shop.inspect">Đồng Kiểm Khi Nhận</b><small data-i18n="shop.inspectText">Kiểm tra đúng hàng mới trả tiền</small></div>
+        <div><span>↶</span><b data-i18n="shop.returns">Đổi Trả Uy Tín 7 Ngày</b><small data-i18n="shop.returnsText">Hỗ trợ nhanh nếu lỗi sản xuất</small></div>
+      </div>
+    </section>
+
+    <section class="catalog-shell" id="products" aria-label="Danh mục sản phẩm OCOP Đồng Nai" data-i18n-aria="shop.catalog">
+      <div class="catalog-note">
+        <div class="note-links"><a href="index.html#store-network" data-i18n="shop.noteStores">▣ ĐIỂM BÁN OCOP</a><span data-i18n="shop.noteCatalog">▦ Danh mục sản phẩm Đồng Nai</span><i>•</i><span data-i18n="shop.noteInternal">♟ Điểm bán theo danh bạ nội bộ</span><i>•</i><span data-i18n="shop.noteNoWeb">ⓘ Không tra cứu dữ liệu sản phẩm trên web</span></div>
+      </div>
+      <div class="catalog-layout">
+        <aside class="filters" aria-label="Bộ lọc sản phẩm" data-i18n-aria="shop.filters">
+          <div class="filter-categories" id="categoryFilters">
+            <button class="category active" data-category="all"><span>🪶</span><span data-i18n="shop.categoryAll">Tất cả danh mục</span><b>4</b></button>
+            <button class="category" data-category="herbal"><span>🌿</span><span data-i18n="shop.categoryHerbal">Thảo Dược &amp; Y Học Cổ Truyền</span><b>2</b></button>
+            <button class="category" data-category="gift"><span>🎁</span><span data-i18n="shop.categoryGift">Quà Tặng Di Sản Cao Cấp</span><b>0</b></button>
+            <button class="category" data-category="farm"><span>🍃</span><span data-i18n="shop.categoryFarm">Nông Sản Chế Biến Sâu</span><b>1</b></button>
+            <button class="category" data-category="specialty"><span>🍊</span><span data-i18n="shop.categorySpecialty">Đặc Sản Thực Phẩm Bản Địa</span><b>0</b></button>
+            <button class="category" data-category="spice"><span>🌱</span><span data-i18n="shop.categorySpice">Gia Vị &amp; Hương Liệu Thổ Nhưỡng</span><b>1</b></button>
+            <button class="category" data-category="five"><span>⭐</span><span data-i18n="shop.categoryFive">Chứng nhận OCOP 5 Sao</span><b>2</b></button>
+            <button class="category" data-category="four"><span>♙</span><span data-i18n="shop.categoryFour">Chứng nhận OCOP 4 Sao</span><b>2</b></button>
+            <button class="category" data-category="three"><span>🟡</span><span data-i18n="shop.categoryThree">Chứng nhận OCOP 3 Sao Đồng Nai</span><b>25</b></button>
+          </div>
+          <label class="search-box"><span>⌕</span><input id="searchInput" type="search" placeholder="Tên đặc sản hoặc tỉnh" data-i18n-placeholder="shop.searchPlaceholder"><button type="button" aria-label="Tìm kiếm" data-i18n-aria="shop.search">🎙</button></label>
+          <div class="suggestions"><b data-i18n="shop.suggestions">GỢI Ý:</b><button data-search="Chè">Chè Shan tuyết</button><button data-search="Hạt điều">Hạt điều</button><button data-search="Cà phê">Cà phê</button><button data-search="Mật ong">Mật ong</button></div>
+          <div class="combo"><b data-i18n="shop.combo">✨ Combo AI:</b><button data-max="500000">500k</button><button data-max="1000000" data-i18n="shop.million">1 Triệu</button><button data-max="3000000">VIP 3 Tr</button></div>
+          <div class="budget-title"><span data-i18n="shop.budgetTitle">🪄 AI THIẾT KẾ GÓI QUÀ B2B &amp; TỐI ƯU NGÂN SÁCH</span><span>AI</span></div>
+          <div class="budget-options">
+            <button data-max="200000">🎁 200.000 đ</button><button data-max="300000">🎁 300.000 đ</button>
+            <button data-max="500000">🎁 500.000 đ</button><button data-max="1000000">🎁 1.000.000 đ</button>
+          </div>
+          <button class="chatbot-open" type="button" id="chatOpen" data-i18n="shop.chatbot">♧ Mở Chatbot AI Tư Vấn 24/7</button>
+        </aside>
+
+        <div class="product-area">
+          <div class="toolbar">
+            <span class="sort-label" data-i18n="shop.sortBy">☷ Sắp xếp theo:</span>
+            <button class="sort active" data-sort="popular" data-i18n="shop.popular">Phổ biến</button><button class="sort" data-sort="bestseller" data-i18n="shop.bestSelling">Bán chạy</button>
+            <span class="divider"></span><span class="sort-label" data-i18n="shop.rating">Phân hạng:</span>
+            <button class="rating-filter active" data-rating="all" data-i18n="shop.all">Tất cả</button>
+            <button class="rating-filter" data-rating="5">★★★★★ <span data-i18n="shop.fiveStars">5 Sao</span> <small>(2)</small></button>
+            <button class="rating-filter" data-rating="4">★★★★☆ <span data-i18n="shop.fourStars">4 Sao</span> <small>(2)</small></button>
+            <button class="rating-filter" data-rating="3">★★★☆☆ <span data-i18n="shop.threeStars">3 Sao</span> <small>(0)</small></button>
+            <button class="sort price-sort" id="priceSort" data-i18n="shop.price">Giá ↕</button>
+            <button class="reset-button" id="resetFilters" data-i18n="shop.reset">⟳ Thiết lập lại</button>
+          </div>
+          <div class="product-grid" id="productGrid"></div>
+          <div class="empty-state" id="emptyState" hidden data-i18n="shop.empty">Không tìm thấy sản phẩm phù hợp. Hãy thử bộ lọc khác nhé.</div>
+          <nav class="pagination" aria-label="Phân trang" data-i18n-aria="shop.pagination"><button disabled data-i18n="shop.previous">‹ Trước</button><button class="current">1</button><button disabled data-i18n="shop.next">Sau ›</button></nav>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="legal">
+        <div><b data-i18n="shop.legalTitle">© 2026 OCOP SALES VIỆT NAM — BẢN QUYỀN THUỘC VỀ ĐỀ ÁN AI DIGITAL BUSINESS CHALLENGE 2026</b>
+          <p><span data-i18n="shop.legalLine1">Giấy chứng nhận ĐKKD &amp; Xúc tiến thương mại OCOP Quốc Gia số: 0312461711 do Sở KH&amp;ĐT TP.HCM cấp.</span><br><span data-i18n="shop.legalLine2">Trụ sở chính: 496 - 496A - 496B Nguyễn Thị Minh Khai, Phường 2, Quận 3, TP.HCM &amp; Hệ thống Trung tâm OCOP Toàn Quốc.</span></p>
+        </div><span class="verified">✅ <span data-i18n="shop.announced">ĐÃ THÔNG BÁO</span><br><span data-i18n="shop.ministry">BỘ CÔNG THƯƠNG</span></span>
+      </div>
+      <div class="footer-columns">
+        <div><h2 data-i18n="shop.contact">THÔNG TIN LIÊN HỆ</h2><p>📍 496 Nguyễn Thị Minh Khai, Phường 2, Quận 3, TP. Hồ Chí Minh</p><p><span data-i18n="shop.hotline">📞 Hotline:</span> 1900 888 688 <span data-i18n="shop.free">(Miễn phí)</span></p><p data-i18n="shop.customerCare">✉️ Liên hệ CSKH</p></div>
+        <div><h2 data-i18n="shop.explore">KHÁM PHÁ OCOP VIỆT NAM</h2><a href="#products" data-i18n="shop.discover">🌾 Khám phá đặc sản theo tỉnh thành</a><a href="index.html#store-network" data-i18n="shop.findStores">▦ Tra cứu điểm bán OCOP</a><a href="#chatOpen" data-i18n="shop.support">♧ Tư vấn và hỗ trợ mua hàng</a></div>
+        <div><h2 data-i18n="shop.about">VỀ OCOP SALES AI</h2><p data-i18n="shop.aboutText">Nền tảng xúc tiến thương mại nông sản số 1 Việt Nam. Kết nối trực tiếp các sản phẩm OCOP chuẩn 4–5 sao từ vùng sản xuất đến người tiêu dùng cả nước.</p></div>
+      </div>
+      <div class="footer-bottom"><span data-i18n="shop.copyright">© 2026 OCOP Sales. Bảo lưu mọi quyền.</span><div><a href="#products" data-i18n="shop.orderInfo">Thông tin đặt hàng</a><i>·</i><a href="#products" data-i18n="shop.introduction">Giới thiệu</a><i>·</i><a href="index.html#store-network" data-i18n="shop.contactLink">Liên hệ</a><i>·</i><a href="#products" data-i18n="shop.privacy">Chính sách bảo mật</a></div></div>
+    </div>
+  </footer>
+  <button class="back-top" id="backTop" type="button">↑ <span data-i18n="shop.backTop">Lên đầu trang</span></button>
+  <button class="floating-chat" id="floatingChat" type="button" aria-label="Mở chatbot" data-i18n-aria="shop.openChat">▣<b>AI</b></button>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="locale.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
