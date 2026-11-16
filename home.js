@@ -7,8 +7,6 @@ const selectedProduct = document.getElementById("selectedProduct");
 const locationMap = document.getElementById("locationMap");
 const mapOpenLink = document.getElementById("mapOpenLink");
 const directionsLink = document.getElementById("directionsLink");
-const landingToast = document.getElementById("landingToast");
-let landingToastTimer;
 let currentMapQuery = "Đồng Nai, Việt Nam";
 let currentZoom = 9;
 
@@ -41,13 +39,6 @@ function selectLocation(source, selectedElement) {
   });
 }
 
-function showLandingToast(message) {
-  landingToast.textContent = message;
-  landingToast.classList.add("show");
-  clearTimeout(landingToastTimer);
-  landingToastTimer = setTimeout(() => landingToast.classList.remove("show"), 2300);
-}
-
 locationTabs.forEach((tab) => {
   tab.addEventListener("click", () => selectLocation(tab, null));
 });
@@ -62,6 +53,3 @@ document.getElementById("mapCenter").addEventListener("click", () => {
   updateMap(currentMapQuery, currentZoom);
 });
 
-document.getElementById("assistantButton").addEventListener("click", () => {
-  showLandingToast(window.ocopLocale.t("home.assistantToast"));
-});

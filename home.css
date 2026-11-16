@@ -72,8 +72,6 @@ a { color: inherit; text-decoration: none; }
 .store-card em { position: absolute; right: 7px; bottom: 5px; padding: 4px 7px; border: 1px solid #90d9ff; border-radius: 6px; color: #078bc9; background: white; font-size: 6px; font-style: normal; font-weight: 700; }
 .landing-footer { min-height: 34px; flex-shrink: 0; margin: 0 16px 7px; display: grid; place-items: center; border: 1px solid #2793c8; border-radius: 8px; color: #fff; background: #091a32; box-shadow: 0 3px 5px rgba(22,76,104,.14); }
 .landing-footer a { width: 100%; padding: 7px 12px; text-align: center; font-size: 8px; font-weight: 800; }
-.landing-toast { position: fixed; z-index: 5; right: 18px; bottom: 52px; max-width: min(360px, calc(100vw - 36px)); padding: 10px 14px; border-radius: 9px; color: white; background: #154e70; box-shadow: 0 4px 12px #9db8c8; font-size: 11px; opacity: 0; transform: translateY(8px); transition: .2s; pointer-events: none; }
-.landing-toast.show { opacity: 1; transform: translateY(0); }
 @media (min-height: 800px) and (min-width: 761px) {
   .landing-main { width: min(970px, calc(100% - 32px)); }
   .landing-intro { min-height: 630px; }

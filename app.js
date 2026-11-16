@@ -1,14 +1,11 @@
-const products = [
-  { id: 1, name: "Hạt điều vị rang muối nguyên bản Nga Biên", category: "farm", rating: 5, price: 350000, unit: "kg", image: "cashew", bestseller: 2 },
-  { id: 2, name: "Bột cacao nguyên chất Trọng Đức", category: "herbal", rating: 5, price: 250000, unit: "hộp", image: "cacao", bestseller: 1 },
-  { id: 3, name: "Trà sen Nhơn Trạch", category: "herbal", rating: 4, price: 500000, unit: "hộp", image: "tea", bestseller: 4 },
-  { id: 4, name: "Mật ong hoa tràm / hoa cao su Đồng Nai", category: "spice", rating: 4, price: 250000, unit: "lít", image: "honey", bestseller: 3 }
-];
-
+const products = window.ocopProducts;
 const grid = document.getElementById("productGrid");
 const searchInput = document.getElementById("searchInput");
 const emptyState = document.getElementById("emptyState");
 const cartCount = document.getElementById("cartCount");
+const cartBackdrop = document.getElementById("cartBackdrop");
+const cartItems = document.getElementById("cartItems");
+const cartEmpty = document.getElementById("cartEmpty");
 const toast = document.getElementById("toast");
 const translateApp = (key) => window.ocopLocale ? window.ocopLocale.t(key) : key;
 let activeCategory = "all";
@@ -17,7 +14,6 @@ let searchTerm = "";
 let maxPrice = Infinity;
 let sortMode = "popular";
 let ascendingPrice = false;
-let itemCount = 0;
 const favorites = new Set();
 let toastTimer;
 
@@ -31,6 +27,62 @@ function showToast(message) {
   clearTimeout(toastTimer);
   toastTimer = setTimeout(() => toast.classList.remove("show"), 2300);
 }
+
+function productUnit(product) {
+  const unitKey = product.unit === "hộp" ? "box" : product.unit === "lít" ? "liter" : "kg";
+  return translateApp(`product.unit.${unitKey}`);
+}
+
+function renderCart() {
+  const entries = window.ocopCart.getItems();
+  const count = window.ocopCart.getCount();
+  const subtotal = window.ocopCart.getSubtotal();
+  cartCount.textContent = String(count);
+  document.getElementById("cartItemCount").textContent = translateApp("cart.count").replace("{count}", String(count));
+  document.getElementById("cartSubtotal").textContent = formatPrice(subtotal);
+  document.getElementById("cartTotal").textContent = formatPrice(subtotal);
+  cartEmpty.hidden = entries.length > 0;
+  cartItems.hidden = entries.length === 0;
+  cartItems.innerHTML = entries.map(({ product, quantity }) => `
+    <article class="cart-item">
+      <div class="cart-product-thumb product-image ${product.image}" aria-hidden="true"><div class="art"></div></div>
+      <div class="cart-product-info">
+        <strong>${product.name}</strong>
+        <small>${translateApp("cart.productMeta").replace("{rating}", String(product.rating))}</small>
+        <span>${formatPrice(product.price)} / ${productUnit(product)}</span>
+      </div>
+      <div class="cart-quantity">
+        <button type="button" data-cart-action="decrease" data-id="${product.id}" aria-label="${translateApp("cart.decrease")}">−</button>
+        <span>${quantity}</span>
+        <button type="button" data-cart-action="increase" data-id="${product.id}" aria-label="${translateApp("cart.increase")}">+</button>
+      </div>
+      <strong class="cart-line-total">${formatPrice(product.price * quantity)}</strong>
+      <button class="cart-remove" type="button" data-cart-action="remove" data-id="${product.id}" aria-label="${translateApp("cart.remove")}">×</button>
+    </article>`).join("");
+}
+
+function openCart() {
+  renderCart();
+  cartBackdrop.hidden = false;
+  document.body.classList.add("cart-modal-open");
+  cartButton.setAttribute("aria-expanded", "true");
+  document.getElementById("cartClose").focus();
+}
+
+function closeCart() {
+  cartBackdrop.hidden = true;
+  document.body.classList.remove("cart-modal-open");
+  cartButton.setAttribute("aria-expanded", "false");
+  cartButton.focus();
+}
+
+function addToCart(product, quantity, openAfterAdd) {
+  window.ocopCart.add([{ id: product.id, quantity: quantity || 1 }]);
+  showToast(translateApp("product.added").replace("{name}", product.name));
+  if (openAfterAdd) openCart();
+}
+
+window.ocopOpenCart = openCart;
 
 function visibleProducts() {
   return products
@@ -138,28 +190,44 @@ grid.addEventListener("click", (event) => {
   if (!button) return;
   const product = products.find((item) => item.id === Number(button.dataset.id));
   if (button.dataset.action === "cart" || button.dataset.action === "buy") {
-    itemCount += 1;
-    cartCount.textContent = itemCount;
-    showToast(translateApp("product.added").replace("{name}", product.name));
+    addToCart(product, 1, button.dataset.action === "buy");
   } else if (button.dataset.action === "favorite") {
     if (favorites.has(product.id)) favorites.delete(product.id);
     else favorites.add(product.id);
     renderProducts();
     showToast(translateApp(favorites.has(product.id) ? "product.favoriteAdded" : "product.favoriteRemoved"));
   } else {
-    const unitKey = product.unit === "hộp" ? "box" : product.unit === "lít" ? "liter" : "kg";
-    showToast(`${product.name} · ${formatPrice(product.price)} / ${translateApp(`product.unit.${unitKey}`)}`);
+    showToast(`${product.name} · ${formatPrice(product.price)} / ${productUnit(product)}`);
   }
 });
 
-document.getElementById("cartButton").addEventListener("click", () => showToast(translateApp("product.cartStatus").replace("{count}", String(itemCount))));
-document.getElementById("chatOpen").addEventListener("click", () => showToast(translateApp("product.assistant")));
-document.getElementById("floatingChat").addEventListener("click", () => showToast(translateApp("product.assistant")));
+const cartButton = document.getElementById("cartButton");
+cartButton.addEventListener("click", openCart);
+document.getElementById("cartClose").addEventListener("click", closeCart);
+document.getElementById("cartContinue").addEventListener("click", closeCart);
+cartBackdrop.addEventListener("click", (event) => {
+  if (event.target === cartBackdrop) closeCart();
+});
+cartItems.addEventListener("click", (event) => {
+  const button = event.target.closest("[data-cart-action]");
+  if (!button) return;
+  const id = Number(button.dataset.id);
+  const entry = window.ocopCart.getItems().find((item) => item.product.id === id);
+  if (!entry) return;
+  if (button.dataset.cartAction === "remove") window.ocopCart.remove(id);
+  else window.ocopCart.setQuantity(id, entry.quantity + (button.dataset.cartAction === "increase" ? 1 : -1));
+});
+window.addEventListener("ocop:cartchange", renderCart);
+document.addEventListener("keydown", (event) => {
+  if (event.key === "Escape" && !cartBackdrop.hidden) closeCart();
+});
 document.getElementById("backTop").addEventListener("click", () => window.scrollTo({ top: 0, behavior: "smooth" }));
 
 window.addEventListener("ocop:languagechange", () => {
   document.getElementById("priceSort").textContent = translateApp(ascendingPrice ? "shop.priceAscending" : "shop.price");
   renderProducts();
+  renderCart();
 });
 
 renderProducts();
+renderCart();

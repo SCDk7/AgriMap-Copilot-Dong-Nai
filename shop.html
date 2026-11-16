@@ -10,6 +10,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="locale.css">
+  <link rel="stylesheet" href="chatbot.css">
 </head>
 <body>
   <div class="top-accent"></div>
@@ -22,7 +23,7 @@
       <a href="index.html#store-network"><span>▦</span> <span data-i18n="shop.stores">Điểm bán Đồng Nai</span></a>
     </nav>
     <div class="header-actions">
-      <button class="cart-button" id="cartButton" type="button"><span data-i18n="shop.cart">🛒 Giỏ hàng</span> <span class="cart-count" id="cartCount">0</span></button>
+      <button class="cart-button" id="cartButton" type="button" aria-expanded="false" aria-haspopup="dialog"><span data-i18n="shop.cart">🛒 Giỏ hàng</span> <span class="cart-count" id="cartCount">0</span></button>
       <div class="locale-picker">
         <button class="locale-trigger" type="button" aria-label="Chọn ngôn ngữ" data-i18n-aria="locale.menu" aria-haspopup="menu" aria-expanded="false">
           <span>🌐</span><span class="locale-code">VI</span><span>⌄</span>
@@ -124,9 +125,75 @@
     </div>
   </footer>
   <button class="back-top" id="backTop" type="button">↑ <span data-i18n="shop.backTop">Lên đầu trang</span></button>
-  <button class="floating-chat" id="floatingChat" type="button" aria-label="Mở chatbot" data-i18n-aria="shop.openChat">▣<b>AI</b></button>
+  <section class="ocop-chat" id="ocopChat" hidden role="dialog" aria-modal="false" aria-labelledby="chatTitle">
+    <header class="chat-header">
+      <span class="chat-avatar" aria-hidden="true">🤖</span><span class="chat-online" aria-hidden="true"></span>
+      <strong class="chat-title" id="chatTitle" data-i18n="chat.title">TRỢ LÝ AI OCOP VIỆT NAM</strong>
+      <button class="chat-reset" type="button" aria-label="Làm mới hội thoại" data-i18n="chat.reset" data-i18n-aria="chat.reset">⟲ Làm mới</button>
+      <button class="chat-close" type="button" aria-label="Đóng chatbot" data-i18n-aria="chat.close">×</button>
+    </header>
+    <div class="chat-messages" role="log" aria-live="polite" aria-relevant="additions">
+      <div class="chat-message assistant">
+        <span class="chat-avatar" aria-hidden="true">🤖</span>
+        <div class="chat-bubble">
+          <p data-i18n="chat.welcome">Dạ, em là Trợ lý AI OCOP Việt Nam. Em hỗ trợ tìm đặc sản, chọn quà, tra cứu thông tin sản phẩm, đặt hàng và khiếu nại. Anh/chị muốn tìm đặc sản vùng nào hoặc cần em hỗ trợ gì ạ?</p>
+          <div class="chat-intents">
+            <button type="button" data-chat-intent="product" data-i18n="chat.intentProduct">Tư vấn sản phẩm</button>
+            <button type="button" data-chat-intent="order" data-i18n="chat.intentOrder">Hỗ trợ đặt hàng</button>
+            <button type="button" data-chat-intent="tracking" data-i18n="chat.intentTracking">Kiểm tra đơn hàng</button>
+            <button type="button" data-chat-intent="returns" data-i18n="chat.intentReturns">Khiếu nại / đổi trả</button>
+          </div>
+          <p data-i18n="chat.helpPrompt">Anh/chị cần tư vấn, hỗ trợ đơn hàng hay phản ánh vấn đề gì? Em sẽ hướng dẫn từng bước.</p>
+          <p class="chat-note" data-i18n="chat.footerNote">Giá và thông tin theo danh mục cửa hàng. Anh/chị xác nhận tồn kho, địa chỉ điểm bán trước khi đặt mua hoặc đến xem.</p>
+        </div>
+      </div>
+    </div>
+    <footer class="chat-footer">
+      <div class="chat-quickbar">
+        <button class="chat-contact" type="button" data-chat-support data-i18n="chat.contact">👩🏻‍💻 Gặp Admin / CSKH Trực Tiếp</button>
+        <button type="button" data-chat-intent="product" data-i18n="chat.intentProduct">Tư vấn sản phẩm</button>
+        <button type="button" data-chat-intent="order" data-i18n="chat.intentOrder">Hỗ trợ đặt hàng</button>
+        <button type="button" data-chat-intent="tracking" data-i18n="chat.intentTracking">Kiểm tra đơn hàng</button>
+        <button type="button" data-chat-intent="returns" data-i18n="chat.intentReturns">Khiếu nại / đổi trả</button>
+      </div>
+      <form class="chat-composer" id="chatbotForm">
+        <input id="chatbotAttachment" type="file" accept="image/*" hidden>
+        <button class="chat-attach" type="button" aria-label="Chọn ảnh" data-i18n-aria="chat.attach">▧</button>
+        <label class="chat-sr-only" for="chatbotInput" data-i18n="chat.inputLabel">Nội dung tin nhắn</label>
+        <textarea id="chatbotInput" rows="1" placeholder="Nhập yêu cầu tư vấn, hỗ trợ..." data-i18n-placeholder="chat.placeholder"></textarea>
+        <button class="chat-voice" type="button" aria-label="Nhập giọng nói" data-i18n-aria="chat.voice">♩</button>
+        <button type="submit" aria-label="Gửi tin nhắn" data-i18n-aria="chat.send">➤</button>
+      </form>
+      <p class="chat-status" id="chatbotStatus" role="status" aria-live="polite"></p>
+    </footer>
+  </section>
+  <div class="cart-backdrop" id="cartBackdrop" hidden>
+    <section class="cart-dialog" role="dialog" aria-modal="true" aria-labelledby="cartTitle">
+      <header class="cart-header">
+        <div><h2 id="cartTitle" data-i18n="cart.title">Giỏ hàng của bạn</h2><p id="cartItemCount">0 sản phẩm</p></div>
+        <button id="cartClose" class="cart-close" type="button" aria-label="Đóng giỏ hàng" data-i18n-aria="cart.close">×</button>
+      </header>
+      <div class="cart-content">
+        <div class="cart-empty" id="cartEmpty" hidden data-i18n="cart.empty">Giỏ hàng đang trống.</div>
+        <div class="cart-items" id="cartItems"></div>
+      </div>
+      <footer class="cart-footer">
+        <div class="cart-sum-row"><span data-i18n="cart.subtotal">Tạm tính</span><strong id="cartSubtotal">0 đ</strong></div>
+        <div class="cart-sum-row cart-total"><span data-i18n="cart.total">Tổng tiền hàng</span><strong id="cartTotal">0 đ</strong></div>
+        <p data-i18n="cart.notice">Giỏ hàng được lưu trên thiết bị này. Liên hệ cửa hàng để xác nhận tồn kho, phí vận chuyển và đặt mua.</p>
+        <div class="cart-actions">
+          <button id="cartContinue" type="button" data-i18n="cart.continue">Tiếp tục mua sắm</button>
+          <a href="tel:1900888688" data-i18n="cart.checkout">Liên hệ đặt hàng</a>
+        </div>
+      </footer>
+    </section>
+  </div>
+  <button class="floating-chat" id="floatingChat" type="button" aria-label="Mở chatbot" data-i18n-aria="shop.openChat">🤖<b>AI</b></button>
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
   <script src="locale.js"></script>
+  <script src="catalog.js"></script>
+  <script src="cart.js"></script>
+  <script src="chatbot.js"></script>
   <script src="app.js"></script>
 </body>
 </html>
