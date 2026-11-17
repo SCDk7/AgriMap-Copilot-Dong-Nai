@@ -13,7 +13,7 @@
   border: 1px solid #78cafa;
   border-radius: 22px;
   color: #172f42;
-  background: #e1f3fc;
+  background: #f1f5f6;
   box-shadow: 0 12px 32px rgba(48, 113, 149, .24);
   font-family: inherit;
 }
@@ -352,7 +352,7 @@
   background: #eef9ff;
   font-size: 24px;
 }
-.cart-content { min-height: 0; overflow: auto; padding: 15px 20px; background: #eaf6ff; }
+.cart-content { min-height: 0; overflow: auto; padding: 15px 20px; background: #f2f5f6; }
 .cart-empty { padding: 45px 12px; color: #5b778a; text-align: center; font-size: 13px; }
 .cart-items { display: grid; gap: 9px; }
 .cart-items[hidden] { display: none; }

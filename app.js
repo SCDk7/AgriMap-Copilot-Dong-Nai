@@ -7,6 +7,7 @@ const cartBackdrop = document.getElementById("cartBackdrop");
 const cartItems = document.getElementById("cartItems");
 const cartEmpty = document.getElementById("cartEmpty");
 const toast = document.getElementById("toast");
+const productDetailBackdrop = document.getElementById("productDetailBackdrop");
 const translateApp = (key) => window.ocopLocale ? window.ocopLocale.t(key) : key;
 let activeCategory = "all";
 let activeRating = "all";
@@ -17,6 +18,7 @@ let ascendingPrice = false;
 const favorites = new Set();
 const ratingCategories = { five: 5, four: 4, three: 3 };
 let toastTimer;
+let activeDetailProduct = null;
 
 function formatPrice(price) {
   return `${price.toLocaleString("vi-VN")} đ`;
@@ -97,7 +99,7 @@ function closeCart() {
 function addToCart(product, quantity, openAfterAdd) {
   window.ocopCart.add([{ id: product.id, quantity: quantity || 1 }]);
   showToast(translateApp("product.added").replace("{name}", product.name));
-  if (openAfterAdd) openCart();
+  if (openAfterAdd) window.location.href = `checkout.html?buy=${product.id}`;
 }
 
 window.ocopOpenCart = openCart;
@@ -208,17 +210,55 @@ grid.addEventListener("click", (event) => {
   const button = event.target.closest("[data-action]");
   if (!button) return;
   const product = products.find((item) => item.id === Number(button.dataset.id));
-  if (button.dataset.action === "cart" || button.dataset.action === "buy") {
+  if (button.dataset.action === "details") {
+    activeDetailProduct = product;
+    const visual = document.getElementById("detailVisual");
+    visual.className = `product-detail-visual product-image ${product.image}`;
+    visual.setAttribute("aria-label", product.name);
+    document.getElementById("productDetailTitle").textContent = product.name;
+    document.getElementById("detailRating").textContent = `${product.rating} Sao OCOP`;
+    document.getElementById("detailDescription").textContent = productDescriptions[product.id] || `${product.name} – đặc sản Đồng Nai đạt chuẩn OCOP ${product.rating} sao. Thông tin giá và quy cách được cung cấp theo danh mục cửa hàng.`;
+    document.getElementById("detailPrice").textContent = `${formatPrice(product.price)} / ${productUnit(product)}`;
+    productDetailBackdrop.hidden = false;
+    document.body.classList.add("product-detail-open");
+    document.getElementById("productDetailClose").focus();
+  } else if (button.dataset.action === "cart" || button.dataset.action === "buy") {
     addToCart(product, 1, button.dataset.action === "buy");
   } else if (button.dataset.action === "favorite") {
     if (favorites.has(product.id)) favorites.delete(product.id);
     else favorites.add(product.id);
     renderProducts();
     showToast(translateApp(favorites.has(product.id) ? "product.favoriteAdded" : "product.favoriteRemoved"));
-  } else {
-    showToast(`${product.name} · ${formatPrice(product.price)} / ${productUnit(product)}`);
   }
 });
+
+const productDescriptions = {
+  1: "Hạt điều vị rang muối nguyên bản Nga Biên – đặc sản Đồng Nai. Quy cách tính giá theo kg; giá và mức sao theo danh sách chủ shop cung cấp. Phù hợp dùng hằng ngày hoặc làm quà.",
+  2: "Bột cacao nguyên chất Trọng Đức, sản phẩm từ vùng Định Quán, Đồng Nai. Thích hợp pha đồ uống và chế biến món ăn; vui lòng xác nhận khối lượng hộp và hướng dẫn bảo quản với điểm bán.",
+  3: "Trà sen Nhơn Trạch – đặc sản Đồng Nai mang hương vị trà sen truyền thống. Giá tính theo hộp; vui lòng liên hệ điểm bán để xác nhận quy cách đóng gói và hướng dẫn pha.",
+  4: "Mật ong hoa tràm / hoa cao su Đồng Nai. Giá tính theo lít; nguồn sản phẩm và quy cách cần được xác nhận trực tiếp với điểm bán trước khi đặt hàng."
+};
+
+function closeProductDetails() {
+  productDetailBackdrop.hidden = true;
+  document.body.classList.remove("product-detail-open");
+}
+document.getElementById("productDetailClose").addEventListener("click", closeProductDetails);
+productDetailBackdrop.addEventListener("click", (event) => { if (event.target === productDetailBackdrop) closeProductDetails(); });
+document.getElementById("detailBuy").addEventListener("click", () => {
+  if (!activeDetailProduct) return;
+  window.location.href = `checkout.html?buy=${activeDetailProduct.id}`;
+});
+document.getElementById("detailAddCart").addEventListener("click", () => {
+  if (!activeDetailProduct) return;
+  addToCart(activeDetailProduct, 1, false);
+  closeProductDetails();
+});
+document.getElementById("detailChat").addEventListener("click", () => {
+  closeProductDetails();
+  document.getElementById("chatOpen")?.click();
+});
+document.addEventListener("keydown", (event) => { if (event.key === "Escape" && !productDetailBackdrop.hidden) closeProductDetails(); });
 
 const cartButton = document.getElementById("cartButton");
 cartButton.addEventListener("click", openCart);

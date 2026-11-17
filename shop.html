@@ -184,9 +184,30 @@
         <p data-i18n="cart.notice">Giỏ hàng được lưu trên thiết bị này. Liên hệ cửa hàng để xác nhận tồn kho, phí vận chuyển và đặt mua.</p>
         <div class="cart-actions">
           <button id="cartContinue" type="button" data-i18n="cart.continue">Tiếp tục mua sắm</button>
-          <a href="tel:1900888688" data-i18n="cart.checkout">Liên hệ đặt hàng</a>
+          <a href="checkout.html" data-i18n="cart.checkout">Tiến hành thanh toán</a>
         </div>
       </footer>
+    </section>
+  </div>
+  <div class="product-detail-backdrop" id="productDetailBackdrop" hidden>
+    <section class="product-detail-dialog" role="dialog" aria-modal="true" aria-labelledby="productDetailTitle">
+      <div class="product-detail-visual product-image" id="detailVisual" role="img"><span class="detail-brand">OCOP SALES</span><div class="art" aria-hidden="true"></div></div>
+      <div class="product-detail-content">
+        <button class="product-detail-close" id="productDetailClose" type="button" aria-label="Đóng">×</button>
+        <span class="detail-province">ĐỒNG NAI · OCOP <span id="detailRating"></span></span>
+        <h2 id="productDetailTitle"></h2>
+        <p class="detail-review">⭐ Chưa có đánh giá</p>
+        <p class="detail-description" id="detailDescription"></p>
+        <p class="detail-note">Thông tin sản phẩm tham khảo từ danh mục OCOP nội bộ. Ảnh minh họa; vui lòng xác nhận quy cách và tồn kho với điểm bán.</p>
+        <strong class="detail-price" id="detailPrice"></strong>
+        <div class="detail-actions">
+          <a href="index.html#store-network">📍 Điểm bán &amp; hồ sơ OCOP</a>
+          <button type="button" id="detailBuy">🚚 Mua ngay</button>
+          <button type="button" id="detailChat">✨ AI tư vấn</button>
+          <button class="detail-cart" type="button" id="detailAddCart">🛒 Thêm vào giỏ hàng</button>
+        </div>
+      </div>
+      <details class="detail-reviews"><summary>Đánh giá và nhận xét <span>Chưa có đánh giá cho sản phẩm này</span></summary></details>
     </section>
   </div>
   <div class="auth-backdrop" id="authBackdrop" hidden>

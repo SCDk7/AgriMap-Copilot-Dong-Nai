@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#eaf7ff">
+  <title>Thanh toán · OCOP Sales</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="checkout.css">
+</head>
+<body>
+  <main class="checkout-shell">
+    <a class="back-link" href="shop.html#products">← Quay lại cửa hàng</a>
+    <div class="language-row"><select aria-label="Ngôn ngữ"><option>VI · Tiếng Việt</option><option>EN · English</option></select></div>
+    <header class="page-heading"><h1>🚚 Đặt hàng trực tuyến OCOP</h1><p>Kiểm tra sản phẩm và điền địa chỉ nhận hàng. Nhà bán hàng sẽ liên hệ xác nhận đơn.</p></header>
+    <aside class="delivery"><b>🚚 Giao hàng dự kiến</b><p>Nội thành: 1–2 ngày làm việc · Ngoại thành: 2–5 ngày làm việc.</p><p>Thời gian thực tế tùy khu vực và sẽ được người bán xác nhận.</p></aside>
+    <form id="checkoutForm" novalidate>
+      <section class="order-card" aria-label="Thông tin đơn hàng">
+        <div id="orderItems"></div>
+        <button class="add-product" type="button" id="addProduct">＋ Thêm sản phẩm</button>
+        <section class="voucher"><div class="voucher-title"><b>🎟 Mã Voucher Giảm Giá</b><span>Voucher OCOP</span></div><div class="voucher-entry"><input id="voucherInput" placeholder="Nhập mã: OCOP2026, FREESHIP, GIAM20K..." aria-label="Mã giảm giá"><button type="button" id="applyVoucher">Áp dụng</button></div><div class="suggestions">Gợi ý: <button type="button" data-voucher="OCOP2026">OCOP2026 (-50k)</button><button type="button" data-voucher="FREESHIP">FREESHIP (-25k)</button><button type="button" data-voucher="GIAM20K">GIAM20K (-20k)</button></div><p id="voucherStatus" role="status"></p></section>
+        <div class="totals"><div><span>Tiền hàng tạm tính</span><b id="subtotal">0 ₫</b></div><div id="discountRow" hidden><span>Giảm giá</span><b id="discount">−0 ₫</b></div><div class="grand-total"><strong>TỔNG THANH TOÁN</strong><strong id="total">0 ₫</strong></div></div>
+        <div class="fields">
+          <label>Họ và tên người nhận *<input name="name" autocomplete="name" required minlength="2" placeholder="Ví dụ: Nguyễn Văn An"></label>
+          <label>Số điện thoại nhận hàng *<input name="phone" type="tel" inputmode="tel" autocomplete="tel" required pattern="[0-9+().\- ]{9,16}" placeholder="Ví dụ: 0912345678"></label>
+          <label class="wide">Địa chỉ nhận hàng chi tiết *<textarea name="address" autocomplete="street-address" required minlength="8" rows="3" placeholder="Số nhà, tên đường, phường/xã, quận/huyện, tỉnh/thành..."></textarea></label>
+        </div>
+        <fieldset class="payment"><legend>Hình thức thanh toán</legend>
+          <label class="payment-option selected"><input type="radio" name="payment" value="vietqr" checked><span>🏦 BIDV / VietQR</span></label>
+          <label class="payment-option"><input type="radio" name="payment" value="momo"><span>📱 Ví MoMo</span></label>
+          <label class="payment-option"><input type="radio" name="payment" value="cod"><span>🚚 Thanh toán khi nhận hàng</span></label>
+        </fieldset>
+        <p class="payment-note" id="paymentNote">Giao diện thanh toán mô phỏng; chưa thực hiện giao dịch thật.</p>
+        <label class="confirm-check"><input type="checkbox" id="confirmInfo" required><span>Tôi xác nhận thông tin nhận hàng chính xác và đồng ý đặt đơn hàng này.</span></label>
+        <button class="submit-order" type="submit">🚚 Xác nhận đặt hàng ngay</button>
+        <p class="form-status" id="formStatus" role="status" aria-live="polite"></p>
+      </section>
+    </form>
+  </main>
+  <div class="payment-backdrop" id="paymentBackdrop" hidden>
+    <section class="payment-dialog" role="dialog" aria-modal="true" aria-labelledby="paymentTitle"><header><h2 id="paymentTitle">Thanh toán</h2><button type="button" id="paymentClose" aria-label="Đóng">×</button></header>
+      <div class="payment-body"><p id="paymentInstruction">Mở ứng dụng ngân hàng và quét mã</p><b class="qr-brand" id="qrBrand">VietQR</b><div class="qr-fake" aria-label="Mã QR minh họa"><span>♥</span></div><p class="demo-warning">Mã QR minh họa — không dùng để chuyển khoản.</p><dl><div><dt>Số tiền tạm tính</dt><dd id="dialogTotal">0 ₫</dd></div><div><dt>Nội dung</dt><dd id="orderCode">OCOP DON HANG</dd></div><div><dt>Phương thức</dt><dd id="dialogMethod">BIDV / VietQR</dd></div></dl><button class="finish-payment" type="button" id="finishPayment">Hoàn tất đặt hàng</button></div>
+    </section>
+  </div>
+  <script src="catalog.js"></script><script src="checkout.js"></script>
+</body>
+</html>
